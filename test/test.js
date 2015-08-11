@@ -235,7 +235,6 @@ describe('ipfs node api', function () {
   })
 
   it('id', function () {
-    // naja
     assert(id.ID)
     assert(id.PublicKey)
   })
@@ -263,6 +262,25 @@ describe('ipfs node api', function () {
         assert.equal(value, 'interplanetary')
         done()
       })
+    })
+  })
+
+  it('publishes an ipns name', function (done) {
+    this.timeout(20 * 1000)
+    ipfs.name.publish(objHash, function (err, res) {
+      if (err) throw err
+      assert.equal(res.Value, objHash)
+      assert.equal(res.Name, id.ID)
+      done()
+    })
+  })
+
+  it('resolves an ipns name', function (done) {
+    this.timeout(20 * 1000)
+    ipfs.name.resolve(id.ID, function (err, res) {
+      if (err) throw err
+      assert.equal('/ipfs/' + objHash, res.Path)
+      done()
     })
   })
 })

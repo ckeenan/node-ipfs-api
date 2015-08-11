@@ -301,6 +301,7 @@ module.exports = function (host_or_multiaddr, port) {
     },
 
     name: {
+      publish: argCommand('name/publish'),
       resolve: argCommand('name/resolve')
     },
 
