@@ -55,7 +55,7 @@ function requestAPI (path, args, opts, files, buffer, cb) {
 
     res.on('data', function (chunk) {
       if (!chunkedObjects) {
-        data += chunk
+        data += chunk.toString('binary')
         return data
       }
 
@@ -64,7 +64,7 @@ function requestAPI (path, args, opts, files, buffer, cb) {
         objects.push(obj)
       } catch(e) {
         chunkedObjects = false
-        data += chunk
+        data += chunk.toString('binary')
       }
     })
     res.on('end', function () {
