@@ -23,6 +23,7 @@
     "url": "https://github.com/ipfs/js-ipfs-api"
   },
   "devDependencies": {
+    "async": "^1.5.0",
     "babel-core": "^6.1.21",
     "babel-eslint": "^4.1.3",
     "babel-loader": "^6.2.0",

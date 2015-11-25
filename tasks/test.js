@@ -35,9 +35,7 @@ gulp.task('test:node', done => {
 gulp.task('test:browser', done => {
   runSequence(
     'daemons:start',
-    'addTestFiles',
     'karma',
-    'rmTestFiles',
     'daemons:stop',
     done
   )
@@ -55,7 +53,7 @@ gulp.task('mocha', () => {
 
 gulp.task('addTestFiles', (cb) => {
   console.log('creating test files...')
-  exec('for i in $(seq 1 4 256); do dd if=/dev/urandom bs=1k count=$i of=' + testFilePath + '/random.$i; done', err => {
+  exec('for i in $(seq 1 4 256); do dd if=/dev/urandom bs=1k count=$i of=' + testFilePath + '/$i; done', err => {
     fs.writeFileSync(__dirname + '/../test/performance/test-files.json', JSON.stringify(fs.readdirSync(testFilePath)))
     cb(err)
   })
