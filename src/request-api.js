@@ -32,10 +32,13 @@ function requestAPI (path, args, opts, files, buffer, cb) {
     buffer = false
   }
 
+  var protocol = config.protocol.slice(-1) === ':' ? config.protocol : config.protocol + ':';
+
   var reqo = {
     method: files ? 'POST' : 'GET',
     host: config.host,
     port: config.port,
+    protocol: protocol,
     path: config['api-path'] + path + '?' + query,
     headers: {
       'User-Agent': config['user-agent'],
